@@ -1,0 +1,15 @@
+Release 0.1 of this code is intended for use on projects who are interested
+in helping the development of the library and are prepared to deal with the
+immaturity of the code and design. Not only will defects in the code be fixed 
+in later versions, there will be radical changes to the design, based on the
+feedback of these early users. These design changes will not all be backward
+compatible.
+
+With that caveat, the library in its current state should provide value.
+Some useful, and perhaps not obvious, features of the current library include:
+- ComparableInterval (and its "concrete" subclass) which can be used for any
+objects that implement Comparable. For example, if you have Money class, and
+want to check ranges, implement Comparable on the Money class and make an
+interval.
+
+

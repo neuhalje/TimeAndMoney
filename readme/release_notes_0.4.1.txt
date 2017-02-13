@@ -1,0 +1,51 @@
+Changes from 0.4 to 0.4.1
+-------------------------
+This is a minor maintenance release. The most significant change is the addition 
+of public accessor methods for the fields of Money and other objects. These follow
+the convention:
+
+ aMoney.breachEncapsulationOfAmount();
+ 
+in order to convey the intent that the field should be private, while allowing
+appropriate breach of encapsulation (such as for persistence).
+ 
+Changes from 0.3 to 0.4
+-----------------------
+Folder reorganization: 
+The module has been renamed to TimeAndMoney. The folders within the project have
+been reorganized for convenience of developers and users.
+
+Build Script: 
+An Ant script can be found in the project's root directory which can do a clean
+build and test, and also creates a library JAR.
+
+
+Target Users for Release 0.4
+----------------------------
+Release 0.4 of this code is intended for use on projects by developers who are 
+interested in helping the development of the library and are prepared to deal with 
+the immaturity of the code and design. Not only will defects in the code be fixed 
+in later versions, there will be radical changes to the design, based on the
+feedback of these early users. These design changes will not all be backward
+compatible.
+With that caveat, the library in its current state should provide value.
+In release 0.4, the time package is becoming fairly usable. Money is rougher, but
+the basic data structure of the Money object is unlikely to change much.
+
+
+Java Version Requirement: 1.4
+-----------------------------
+Currency:  
+The money package depends on the java.util.Currency class. This dependency
+could be eliminated by adding a Currency class to the library. For now, it seems
+simpler to use what the Sun provided.
+
+BigDecimal:
+The money package depends on java.math.BigDecimal, which has been around for
+a while, but is not available in some varieties of JDK, such as J2Me.
+
+assert: 
+Many methods state preconditions using Java assert statement, which is ignored,
+by default, in 1.4, but will not compile in earlier Java versions. To build without errors,
+set all the jdk compliance levels to 1.4. To compile for earlier versions, comment
+out the assert statements. The code will still behave correctly.

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="TimeAndMoney" default="build">
+	<target name="setup_release">
+		<!-- Set this to the cvs tag you want to build for, this is set to head by default -->
+		<property name="cvs.version" value="HEAD" />
+
+		<property name="temp.dir" value="${java.io.tmpdir}" />
+		<property name="timeandmoney.dir" value="${temp.dir}/TimeAndMoney" />
+		<property name="checkout.dir" value="${timeandmoney.dir}/cvs" />
+		<property name="release.dir" value="${timeandmoney.dir}/release" />
+
+		<property name="compile.root.dir" value="${checkout.dir}/TimeAndMoney" />
+		<property name="source.dir" value="${compile.root.dir}/src" />
+		<property name="tests.dir" value="${compile.root.dir}/tests" />
+		<property name="library.dir" value="${compile.root.dir}/lib" />
+		<property name="examples.dir" value="${compile.root.dir}/examples" />
+		<property name="build.dir" value="${compile.root.dir}/build" />
+
+		<property name="jar.file" value="${build.dir}/timeandmoney-${cvs.version}.jar" />
+		<property name="jar.tests.file" value="${build.dir}/timeandmoney-tests-${cvs.version}.jar" />
+		<delete dir="${release.dir}" />
+		<mkdir dir="${release.dir}" />
+	</target>
+
+	<target name="setup_build">
+		<property name="source.dir" value="src" />
+		<property name="tests.dir" value="tests/src" />
+		<property name="examples.dir" value="examples/src" />
+		<property name="build.dir" value="bin" />
+		<property name="library.dir" value="lib" />
+	</target>
+
+	<target name="echo_info">
+		<echo message="Build Temp: ${temp.dir}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<path id="build.classpath">
+			<pathelement path="${build.dir}" />
+			<fileset dir="${library.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+		<javac srcdir="${source.dir}" destdir="${build.dir}" source="1.4" />
+		<javac srcdir="${tests.dir}" destdir="${build.dir}" source="1.4">
+			<classpath refid="build.classpath" />
+		</javac>
+		<javac srcdir="${examples.dir}" destdir="${build.dir}" source="1.4">
+			<classpath refid="build.classpath" />
+		</javac>
+	</target>
+
+	<target name="test" depends="compile">
+		<java fork="yes" classname="junit.textui.TestRunner" taskname="junit" failonerror="true">
+			<arg value="com.domainlanguage.tests.AllTests" />
+			<classpath refid="build.classpath" />
+			<assertions>
+				<enable />
+			</assertions>
+		</java>
+	</target>
+
+	<target name="check_out">
+		<echo message="Checking out Version: ${cvs.version}" />
+		<delete dir="${checkout.dir}" />
+		<cvs cvsRoot=":pserver:anonymous@timeandmoney.cvs.sourceforge.net:/cvsroot/timeandmoney" package="TimeAndMoney" dest="${checkout.dir}" tag="${cvs.version}" />
+	</target>
+
+	<target name="jar" depends="check_out, compile, test">
+		<jar jarfile="${jar.file}" basedir="${build.dir}" includes="com/**" excludes="example/**, **/tests/**, **/**Test.class" />
+		<copy file="${jar.file}" todir="${release.dir}" />
+		<jar jarfile="${jar.tests.file}" basedir="${build.dir}" includes="**/tests/**, example/**, **/**Test.class" />
+		<copy file="${jar.tests.file}" todir="${release.dir}" />
+	</target>
+
+	<target name="src_zip" depends="jar">
+		<zip destfile="${release.dir}/timeandmoney-src-${cvs.version}.zip" basedir="${checkout.dir}" />
+	</target>
+
+	<target name="release" depends="setup_release, echo_info, src_zip" />
+	<target name="build" depends="setup_build, compile, test" />
+</project>

@@ -1,0 +1,49 @@
+1. Checking the installation
+1a. Be sure JUnit is installed.
+1b. Find, in the tests folder, the com.domainlanguage.tests.AllTests class.
+1c. Run it as a JUnit test.
+
+2. Sampling the library
+2a. Locate, in the test/src folder, the example.* packages
+2b. Read the tests to see simple usage examples.
+2c. Browse the library. Each class represents a concept, and you
+    can take an inventory of the concepts provided.
+    Focus on the public methods. None of the other attributes
+    or methods are meant to be used by client code.
+2d. Use the library. It should be useful where problems in 
+    your own application can be expressed in the concepts of 
+    the library. Using the code is the best way to learn it.
+2e. Have some fun. 
+    
+3. Helping the project
+3a. Please give feedback based on your experience using the library.
+    If you were unable to use it, please tell us why. If there are
+    changes that would help, please let us know. If something was
+    particularly useful to you, let us know that too. (Otherwise
+    we might change it!)
+3b. Send us use cases. These don't have to be formal. Just a clear
+	description of what your application has to do that is related
+	to the scope of the library. These scenarios are very valuable
+	to the continuing evolution of this library. (And it is likely
+	to guide the project in a direction more useful to you in particular, 
+	if you provide your use cases.)
+3c. Submit bug-reports. Please use the sourceforge bug tracking tool
+	for this. (Go to http://sourceforge.net/projects/timeandmoney/
+	and click on Bugs.)
+3d. Submit tests that illustrate the bug. For now, you can email these
+	to eric@domainlanguage.com. The pin-point failing test is the absolute
+	best way to report a bug, and is actually even more useful than a
+	bug fix.
+	But those are useful too of course...
+3e. Submit code that fixes a bug and makes your new test pass.
+3f. Submit new functionality. Finally, if you have some code that fits
+	into the scope of the library, and *if you have clear ownership of
+	that code*, it can be helpful. (To keep this library viable as
+	free, open software, we must make sure that no works for hire or
+	other proprietary software is contributed.) 
+	If you do submit something that fits into the scope of the library,
+	it is likely to be changed a lot over time, but that doesn't make
+	it less valuable to have that working starting point. Many important
+	elements of the current library were contributed and have subsequently
+	been heavily modified.
+	over time

@@ -1,0 +1,26 @@
+Release 0.2 adds Money. The name of the module has been changed to TimeAndMoneyLibrary.
+
+This version of this code is intended for use on projects who are interested
+in helping the development of the library and are prepared to deal with the
+immaturity of the code and design. Not only will defects in the code be fixed 
+in later versions, there will be radical changes to the design, based on the
+feedback of these early users. These design changes will not all be backward
+compatible.
+
+With that caveat, the library in its current state should provide value.
+Some useful, and perhaps not obvious, features of the current library include:
+- ComparableInterval (and its "concrete" subclass) which can be used for any
+objects that implement Comparable. For example, Money implements Comparable. So
+if you want to check Price ranges, make an interval for each Money range. Any
+class of yours which implements Comparable can have logical intervals defined
+this way.
+
+Java Version Requirement: 1.4
+-----------------------------
+Currency:  The money package depends on the java.util.Currency class. This dependency
+could be eliminated by adding a Currency class to the library. For now, it seems
+simpler to use what the Sun provided.
+
+assert: Many methods state preconditions using Java assert statement, which is ignored,
+by default, in 1.4, but will not compile in earlier Java versions. This can be made 
+backward compatible by commenting out the assert statements.

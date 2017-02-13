@@ -1,0 +1,5 @@
+Changes from 0.4.2 to 0.4.3
+--
+Money.equals(null) is fixed
+TimePoint.plus days is fixed
+Assertions in TimePoint and CalendarDate are fixed

@@ -1,0 +1,6 @@
+Changes from 0.4.3 to 0.5
+--
+* All model objects are mappable by Hibernate. There is also tests to ensure mappings are correct, if not let us know.
+* Updated tests can be run from the deployed jar.
+* Changed internal implementation Interval, it does not effect the public interface
+* Minor tweaks to time package to fix various bugs

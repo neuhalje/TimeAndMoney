@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates><template id="org.eclipse.jdt.ui.templates.b_tag" name="&lt;b&gt;" description="&lt;b&gt;&lt;/b&gt;" context="javadoc" enabled="true" deleted="false">&lt;b&gt;${word_selection}${cursor}&lt;/b&gt;</template><template id="org.eclipse.jdt.ui.templates.code_tag" name="&lt;code&gt;" description="&lt;code&gt;&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;${word_selection}${cursor}&lt;/code&gt;</template><template name="&lt;code&gt;" description="&lt;code&gt;null&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;null&lt;/code&gt;</template><template name="&lt;code&gt;" description="&lt;code&gt;null&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;null&lt;/code&gt;</template><template name="&lt;code&gt;" description="&lt;code&gt;null&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;null&lt;/code&gt;</template><template id="org.eclipse.jdt.ui.templates.i_tag" name="&lt;i&gt;" description="&lt;i&gt;&lt;/i&gt;" context="javadoc" enabled="true" deleted="false">&lt;i&gt;${word_selection}${cursor}&lt;/i&gt;</template><template id="org.eclipse.jdt.ui.templates.pre_tag" name="&lt;pre&gt;" description="&lt;pre&gt;&lt;/pre&gt;" context="javadoc" enabled="true" deleted="false">&lt;pre&gt;${word_selection}${cursor}&lt;/pre&gt;</template><template id="org.eclipse.jdt.ui.templates.author" name="@author" description="author name" context="javadoc" enabled="true" deleted="false">@author ${user}</template><template id="org.eclipse.jdt.ui.templates.cast" name="cast" description="dynamic cast" context="java" enabled="true" deleted="false">${type} ${new_name} = (${type}) ${name};</template><template id="org.eclipse.jdt.ui.templates.catch" name="catch" description="catch block" context="java" enabled="true" deleted="false">catch (${Exception} e) {
+	${cursor}// ${todo}: handle exception
+}</template><template id="org.eclipse.jdt.ui.templates.do" name="do" description="do while statement" context="java" enabled="true" deleted="false">do {
+	${line_selection}${cursor}
+} while (${condition});</template><template id="org.eclipse.jdt.ui.templates.else" name="else" description="else block" context="java" enabled="true" deleted="false">else {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.elseif" name="elseif" description="else if block" context="java" enabled="true" deleted="false">else if (${condition}) {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.code_tag_false" name="false" description="&lt;code&gt;false&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;false&lt;/code&gt;</template><template id="org.eclipse.jdt.ui.templates.for_array" name="for" description="iterate over array" context="java" enabled="true" deleted="false">for (int ${index} = 0; ${index} &lt; ${array}.length; ${index}++) {
+	${line_selection}${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.for_temp" name="for" description="iterate over array with temporary variable" context="java" enabled="true" deleted="false">for (int ${index} = 0; ${index} &lt; ${array}.length; ${index}++) {
+	${array_type} ${array_element} = ${array}[${index}];
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.for_collection" name="for" description="iterate over collection" context="java" enabled="true" deleted="false">for (Iterator ${iterator} = ${collection}.iterator(); ${iterator}.hasNext(); ) {
+	${type} ${element} = (${type}) ${iterator}.next();
+	${cursor}
+}</template><template name="forcollect" description="collect" context="java" enabled="true" deleted="false">Collection collected = new ArrayList();
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	collected.add(each.${cursor});
+}</template><template name="forcollect" description="collect" context="java" enabled="true" deleted="false">Collection collected = new ArrayList();
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	collected.add(each.${cursor});
+}</template><template name="forcollect" description="collect" context="java" enabled="true" deleted="false">Collection collected = new ArrayList();
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	collected.add(each.${cursor});
+}</template><template name="fordetect" description="detect" context="java" enabled="true" deleted="false">${type} found = null;
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) {
+		found = each;
+		break;
+	}
+}</template><template name="fordetect" description="detect" context="java" enabled="true" deleted="false">${type} found = null;
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) {
+		found = each;
+		break;
+	}
+}</template><template name="fordetect" description="detect" context="java" enabled="true" deleted="false">${type} found = null;
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) {
+		found = each;
+		break;
+	}
+}</template><template name="fordetected" description="detected" context="java" enabled="true" deleted="false">boolean found = false;
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) {
+		found = true;
+		break;
+	}
+}</template><template name="fordetected" description="detected" context="java" enabled="true" deleted="false">boolean found = false;
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) {
+		found = true;
+		break;
+	}
+}</template><template name="fordetected" description="detected" context="java" enabled="true" deleted="false">boolean found = false;
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) {
+		found = true;
+		break;
+	}
+}</template><template name="fordo" description="do" context="java" enabled="true" deleted="false">for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	each.${cursor};
+}</template><template name="fordo" description="do" context="java" enabled="true" deleted="false">for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	each.${cursor};
+}</template><template name="fordo" description="do" context="java" enabled="true" deleted="false">for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	each.${cursor};
+}</template><template name="forselect" description="select" context="java" enabled="true" deleted="false">Collection selected = new ArrayList();
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) 
+		selected.add(each);
+}</template><template name="forselect" description="select" context="java" enabled="true" deleted="false">Collection selected = new ArrayList();
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) 
+		selected.add(each);
+}</template><template name="forselect" description="select" context="java" enabled="true" deleted="false">Collection selected = new ArrayList();
+for (Iterator iterator = ${collection}.iterator(); iterator.hasNext(); ) {
+	${type} each = (${type}) iterator.next();
+	if (each.${cursor}) 
+		selected.add(each);
+}</template><template id="org.eclipse.jdt.ui.templates.if" name="if" description="if statement" context="java" enabled="true" deleted="false">if (${condition}) {
+	${line_selection}${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.ifelse" name="ifelse" description="if else statement" context="java" enabled="true" deleted="false">if (${condition}) {
+	${cursor}
+} else {
+	
+}</template><template id="org.eclipse.jdt.ui.templates.instanceof" name="instanceof" description="dynamic type test and cast" context="java" enabled="true" deleted="false">if (${name} instanceof ${type}) {
+	${type} ${new_name} = (${type})${name};
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.lazy" name="lazy" description="lazy creation" context="java" enabled="true" deleted="false">if (${name} == null) {
+	${name} = new ${type}(${arguments});
+	${cursor}
+}
+
+return ${name};</template><template id="org.eclipse.jdt.ui.templates.main" name="main" description="main method" context="java" enabled="true" deleted="false">static public void main(String[] args) {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.new" name="new" description="create new object" context="java" enabled="true" deleted="false">${type} ${name} = new ${type}(${arguments});</template><template id="org.eclipse.jdt.ui.templates.non-nls" name="nls" description="non-externalized string marker" context="java" enabled="true" deleted="false">//$$NON-NLS-${N}$$</template><template id="org.eclipse.jdt.ui.templates.code_tag_null" name="null" description="&lt;code&gt;null&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;null&lt;/code&gt;</template><template id="org.eclipse.jdt.ui.templates.private_method" name="private_method" description="private method" context="java" enabled="true" deleted="false">private ${return_type} ${name}(${arguments}) {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.private_static_method" name="private_static_method" description="static private method" context="java" enabled="true" deleted="false">static private ${return_type} ${name}(${arguments}) {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.protected_method" name="protected_method" description="protected method" context="java" enabled="true" deleted="false">protected ${return_type} ${name}(${arguments}) {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.public_method" name="public_method" description="public method" context="java" enabled="true" deleted="false">public ${return_type} ${name}(${arguments}) {
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.runnable" name="runnable" description="runnable" context="java" enabled="true" deleted="false">new Runnable() {
+	public void run() {
+		${line_selection}
+	}
+}</template><template id="org.eclipse.jdt.ui.templates.switch" name="switch" description="switch case statement" context="java" enabled="true" deleted="false">switch (${key}) {
+	case ${value}:
+		${cursor}
+		break;
+
+	default:
+		break;
+}</template><template id="org.eclipse.jdt.ui.templates.synchronized" name="synchronized" description="blocksynchronized block" context="java" enabled="true" deleted="false">synchronized (${mutex}) {
+	${line_selection}
+}</template><template id="org.eclipse.jdt.ui.templates.syserr" name="syserr" description="print to standard error" context="java" enabled="true" deleted="false">System.err.println(${word_selection}${cursor});</template><template id="org.eclipse.jdt.ui.templates.sysout" name="sysout" description="print to standard out" context="java" enabled="true" deleted="false">System.out.println(${word_selection}${cursor});</template><template id="org.eclipse.jdt.ui.templates.systrace" name="systrace" description="print current method to standard out" context="java" enabled="true" deleted="false">System.out.println("${enclosing_type}.${enclosing_method}()");</template><template id="org.eclipse.jdt.ui.templates.test" name="test" description="test method" context="java" enabled="true" deleted="false">public void test${name}() {
+	${cursor} 
+}</template><template id="org.eclipse.jdt.ui.templates.toarray" name="toarray" description="convert collection to array" context="java" enabled="true" deleted="false">(${type}[]) ${collection}.toArray(new ${type}[${collection}.size()]);</template><template id="org.eclipse.jdt.ui.templates.code_tag_true" name="true" description="&lt;code&gt;true&lt;/code&gt;" context="javadoc" enabled="true" deleted="false">&lt;code&gt;true&lt;/code&gt;</template><template id="org.eclipse.jdt.ui.templates.try" name="try" description="try catch block" context="java" enabled="true" deleted="false">try {
+	${line_selection}${cursor}
+} catch (${Exception} e) {
+	// ${todo}: handle exception
+}</template><template id="org.eclipse.jdt.ui.templates.while_enumeration" name="while" description="iterate with enumeration" context="java" enabled="true" deleted="false">while (${enumeration}.hasMoreElements()) {
+	${type} ${element} = (${type}) ${enumeration}.nextElement();
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.while_iterator" name="while" description="iterate with iterator" context="java" enabled="true" deleted="false">while (${iterator}.hasNext()) {
+	${type} ${element} = (${type}) ${iterator}.next();
+	${cursor}
+}</template><template id="org.eclipse.jdt.ui.templates.while_condition" name="while" description="while loop with condition" context="java" enabled="true" deleted="false">while (${condition}) {
+	${line_selection}${cursor}
+}</template></templates>
