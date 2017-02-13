@@ -8,6 +8,7 @@ In addition to the unit tests, the `example.*` packages found in the "[examples/
 This software is provided under the very permissive MIT Licence (see LICENSE), so no one should be impeded from trying it.
 
 Getting Started with Time Language
+------------------------------------
 
 The TimeLanguage is a set of classes and interfaces that embodied our basic model of time, allowing representation and manipulation of time values, and providing the language to express time related things.The Java library's date classes make several things hard and obscure that could be easy and clear.
 
