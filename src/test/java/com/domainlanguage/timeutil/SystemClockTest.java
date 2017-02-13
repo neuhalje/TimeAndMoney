@@ -6,14 +6,18 @@
 
 package com.domainlanguage.timeutil;
 
-import java.util.*;
+import com.domainlanguage.time.Duration;
+import com.domainlanguage.time.TimePoint;
+import com.domainlanguage.time.TimeSource;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Date;
 
-import com.domainlanguage.time.*;
+import static org.junit.Assert.assertTrue;
 
-public class SystemClockTest extends TestCase {
-    
+
+public class SystemClockTest {
+    @Test
     public void testSystemClockTimeSource() {
         // The following calls allow polymorphic substitution of TimeSources
         // either in applications or, more often, in testing.
@@ -24,5 +28,5 @@ public class SystemClockTest extends TestCase {
                 Duration.milliseconds(50)) < 0);
     }
 
-    
+
 }

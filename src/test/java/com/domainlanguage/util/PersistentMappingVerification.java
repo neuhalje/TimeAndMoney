@@ -5,12 +5,13 @@
  */
 package com.domainlanguage.util;
 
-import java.lang.reflect.*;
-import java.math.*;
-import java.util.*;
-
-import com.domainlanguage.intervals.*;
+import com.domainlanguage.intervals.Interval;
+import com.domainlanguage.intervals.IntervalTest;
 import com.domainlanguage.time.*;
+
+import java.lang.reflect.*;
+import java.math.BigDecimal;
+import java.util.*;
 
 public class PersistentMappingVerification {
     private static final String SET = "set";
@@ -21,6 +22,7 @@ public class PersistentMappingVerification {
             .getProperty("line.separator");
     private static final Map TEST_TYPE_MAPPING;
     private static final Set SHOULD_IGNORE_FIELDS;
+
     static {
         TEST_TYPE_MAPPING = new HashMap();
         TEST_TYPE_MAPPING
@@ -48,11 +50,12 @@ public class PersistentMappingVerification {
                 .exampleForPersistentMappingTesting());
         TEST_TYPE_MAPPING.put("com.domainlanguage.time.TimeUnit$Type", TimeUnitTest
                 .exampleTypeForPersistentMappingTesting());
-        
-        SHOULD_IGNORE_FIELDS=new HashSet();
+
+        SHOULD_IGNORE_FIELDS = new HashSet();
         SHOULD_IGNORE_FIELDS.add(Interval.class.getName());
         SHOULD_IGNORE_FIELDS.add("com.domainlanguage.intervals.IntervalLimit");
     }
+
     private Class toVerify;
     private Object instance;
     private List problems;
@@ -71,7 +74,7 @@ public class PersistentMappingVerification {
         boolean first = true;
         String nextProblem;
         for (Iterator problemsIterator = problems.iterator(); problemsIterator
-                .hasNext();) {
+                .hasNext(); ) {
             nextProblem = (String) problemsIterator.next();
             if (!first) {
                 buffer.append(LINE_SEPARATOR);
@@ -129,7 +132,7 @@ public class PersistentMappingVerification {
         if (isAbstract(klass)) {
             return;
         }
-        if(isFinal(klass)) {
+        if (isFinal(klass)) {
             addToProblems(klass.toString() + " must not be final");
         }
         checkConstructor(klass);
@@ -157,6 +160,7 @@ public class PersistentMappingVerification {
                     + " had an invocation exception");
         }
     }
+
     private boolean shouldIgnoreFields(Class klass) {
         return SHOULD_IGNORE_FIELDS.contains(klass.getName());
     }
@@ -164,9 +168,11 @@ public class PersistentMappingVerification {
     private boolean isAbstract(Class klass) {
         return (klass.getModifiers() & Modifier.ABSTRACT) > 0;
     }
+
     private boolean isFinal(Class klass) {
         return (klass.getModifiers() & Modifier.FINAL) > 0;
     }
+
     private void checkField(Field theField) {
         String name = capitalize(theField.getName());
         Class type = getTypeFor(theField);
@@ -180,6 +186,7 @@ public class PersistentMappingVerification {
             return;
         }
     }
+
     private boolean sameClassOrBothNull(Object one, Object another) {
         if (one == another)
             return true;
@@ -192,7 +199,7 @@ public class PersistentMappingVerification {
 
     private Object checkGetter(Field theField, String name) {
         Method getter = null;
-        Object actual=null;
+        Object actual = null;
         try {
             getter = getGetter(theField, name, GET + FOR_PERSISTENT_MAPPING + name);
             if (!isMethodPrivate(getter)) {
@@ -226,7 +233,7 @@ public class PersistentMappingVerification {
             }
             if (instance != null) {
                 setter.setAccessible(true);
-                setter.invoke(instance, new Object[] { toTest });
+                setter.invoke(instance, new Object[]{toTest});
             }
         } catch (NoSuchMethodException ex) {
             addToProblems(ex.getMessage() + "does not exist");
@@ -304,6 +311,7 @@ public class PersistentMappingVerification {
         chars[0] = Character.toUpperCase(chars[0]);
         return new String(chars);
     }
+
     private boolean isPrimitivePersistenceMappingType(Class klass) {
         try {
             return klass.getDeclaredMethod(GET_PRIMITIVE_PERSISTENCE_MAPPING_TYPE, null) != null;

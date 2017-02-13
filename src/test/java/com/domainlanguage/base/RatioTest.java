@@ -6,12 +6,16 @@
 
 package com.domainlanguage.base;
 
-import java.math.*;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.math.BigDecimal;
 
-public class RatioTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+public class RatioTest {
+
+    @Test
     public void testBigDecimalRatio() {
         Ratio r3over2 = Ratio.of(new BigDecimal(3), new BigDecimal(2));
         BigDecimal result = r3over2.decimalValue(1, Rounding.UNNECESSARY);
@@ -35,24 +39,28 @@ public class RatioTest extends TestCase {
         assertEquals(new BigDecimal("3.0003333"), result);
     }
 
+    @Test
     public void testLongRatio() {
         Ratio rManyDigits = Ratio.of(9001l, 3000l);
         BigDecimal result = rManyDigits.decimalValue(6, Rounding.UP);
         assertEquals(new BigDecimal("3.000334"), result);
     }
 
+    @Test
     public void testEquals() {
         assertTrue(Ratio.of(100, 200).equals(Ratio.of(100, 200)));
         assertEquals(Ratio.of(100, 200), Ratio.of(100, 200));
         assertEquals(Ratio.of(100, 200), Ratio.of(new BigDecimal("100"), new BigDecimal("200")));
     }
 
+    @Test
     public void testMultiplyNumerator() {
         Ratio rManyDigits = Ratio.of(9001, 3000);
         Ratio product = rManyDigits.times(new BigDecimal("1.1"));
         assertEquals(Ratio.of(new BigDecimal("9901.1"), new BigDecimal(3000)), product);
     }
 
+    @Test
     public void testMultiplyByRatio() {
         Ratio r1 = Ratio.of(9001, 3000);
         Ratio r2 = Ratio.of(3, 2);

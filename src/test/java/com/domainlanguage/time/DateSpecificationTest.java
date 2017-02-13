@@ -6,12 +6,16 @@
 
 package com.domainlanguage.time;
 
-import java.util.*;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Calendar;
+import java.util.Iterator;
 
-public class DateSpecificationTest extends TestCase {
+import static org.junit.Assert.*;
 
+public class DateSpecificationTest {
+
+    @Test
     public void testFixedDate() {
         CalendarInterval y2004 = CalendarInterval.year(2004);
         DateSpecification independenceDay = DateSpecification.fixed(7, 4);
@@ -22,6 +26,7 @@ public class DateSpecificationTest extends TestCase {
         assertTrue(independenceDay.isSatisfiedBy(CalendarDate.date(1970, 7, 4)));
     }
 
+    @Test
     public void testNthWeekdayInMonth() {
         DateSpecification thanksgiving = DateSpecification.nthOccuranceOfWeekdayInMonth(11, Calendar.THURSDAY, 4);
         assertEquals(CalendarDate.date(2004, 11, 25), ((AnnualDateSpecification) thanksgiving).ofYear(2004));
@@ -47,6 +52,7 @@ public class DateSpecificationTest extends TestCase {
         assertFalse(iterator.hasNext());
     }
 
+    @Test
     public void testSelectFirstFromInterval() {
         CalendarInterval y2002_2004 = CalendarInterval.inclusive(2002, 1, 1, 2004, 12, 31);
         CalendarInterval ylate2002_2004 = CalendarInterval.inclusive(2002, 8, 1, 2004, 12, 31);
@@ -59,6 +65,7 @@ public class DateSpecificationTest extends TestCase {
         assertNull(independenceDay.firstOccurrenceIn(ylate2002_early2003));
     }
 
+    @Test
     public void testIterateThroughInterval() {
         DateSpecification independenceDay = DateSpecification.fixed(7, 4);
         CalendarInterval ylate2002_early2005 = CalendarInterval.inclusive(2002, 8, 1, 2005, 6, 31);

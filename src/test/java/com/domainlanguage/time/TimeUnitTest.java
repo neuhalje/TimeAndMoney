@@ -6,27 +6,33 @@
 
 package com.domainlanguage.time;
 
-import java.util.*;
+import com.domainlanguage.tests.SerializationTester;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Calendar;
 
-import com.domainlanguage.tests.*;
+import static org.junit.Assert.*;
 
-public class TimeUnitTest extends TestCase {
+public class TimeUnitTest {
     public static TimeUnit exampleForPersistentMappingTesting() {
         return TimeUnit.second;
     }
+
     public static TimeUnit.Type exampleTypeForPersistentMappingTesting() {
         return TimeUnit.Type.hour;
     }
+
+    @Test
     public void testSerialization() {
         SerializationTester.assertCanBeSerialized(TimeUnit.month);
     }
 
+    @Test
     public void testToString() {
         assertEquals("month", TimeUnit.month.toString());
     }
 
+    @Test
     public void testConvertibleToMilliseconds() {
         assertTrue(TimeUnit.millisecond.isConvertibleToMilliseconds());
         assertTrue(TimeUnit.hour.isConvertibleToMilliseconds());
@@ -36,6 +42,7 @@ public class TimeUnitTest extends TestCase {
         assertFalse(TimeUnit.year.isConvertibleToMilliseconds());
     }
 
+    @Test
     public void testComparison() {
         assertEquals(0, TimeUnit.hour.compareTo(TimeUnit.hour));
         assertTrue(TimeUnit.hour.compareTo(TimeUnit.millisecond) > 0);
@@ -52,6 +59,7 @@ public class TimeUnitTest extends TestCase {
         assertTrue(TimeUnit.year.compareTo(TimeUnit.quarter) > 0);
     }
 
+    @Test
     public void testJavaCalendarConstantForBaseType() {
         assertEquals(Calendar.MILLISECOND, TimeUnit.millisecond.javaCalendarConstantForBaseType());
         assertEquals(Calendar.MILLISECOND, TimeUnit.hour.javaCalendarConstantForBaseType());
@@ -62,6 +70,7 @@ public class TimeUnitTest extends TestCase {
         assertEquals(Calendar.MONTH, TimeUnit.year.javaCalendarConstantForBaseType());
     }
 
+    @Test
     public void testIsConvertableTo() {
         assertTrue(TimeUnit.hour.isConvertibleTo(TimeUnit.minute));
         assertTrue(TimeUnit.minute.isConvertibleTo(TimeUnit.hour));
@@ -71,6 +80,7 @@ public class TimeUnitTest extends TestCase {
         assertFalse(TimeUnit.hour.isConvertibleTo(TimeUnit.month));
     }
 
+    @Test
     public void testNextFinerUnit() {
         assertEquals(TimeUnit.minute, TimeUnit.hour.nextFinerUnit());
         assertEquals(TimeUnit.month, TimeUnit.quarter.nextFinerUnit());

@@ -7,11 +7,7 @@ package com.domainlanguage.tests;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
 
 /**
  * This class is to mimic the behavior of a server that delivers a canned

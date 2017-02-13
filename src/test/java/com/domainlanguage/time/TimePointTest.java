@@ -6,13 +6,16 @@
 
 package com.domainlanguage.time;
 
-import java.util.*;
+import com.domainlanguage.tests.SerializationTester;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
-import com.domainlanguage.tests.*;
+import static org.junit.Assert.*;
 
-public class TimePointTest extends TestCase {
+public class TimePointTest {
     private static final String AM = "AM";
     private static final String PM = "PM";
 
@@ -24,10 +27,12 @@ public class TimePointTest extends TestCase {
     private TimePoint dec21_2003 = TimePoint.atMidnightGMT(2003, 12, 21);
     private TimePoint dec22_2003 = TimePoint.atMidnightGMT(2003, 12, 22);
 
+    @Test
     public void testSerialization() {
         SerializationTester.assertCanBeSerialized(dec19_2003);
     }
 
+    @Test
     public void testCreationWithDefaultTimeZone() {
         TimePoint expected = TimePoint.atGMT(2004, 1, 1, 0, 0, 0, 0);
         assertEquals("at midnight", expected, TimePoint.atMidnightGMT(2004, 1,
@@ -42,6 +47,7 @@ public class TimePointTest extends TestCase {
                 0), TimePoint.at12hr(2004, 1, 1, 12, PM, 0, 0, 0, gmt));
     }
 
+    @Test
     public void testCreationWithTimeZone() {
         /*
          * TimePoints are based on miliseconds from the Epoc. They do not have a
@@ -65,6 +71,7 @@ public class TimePointTest extends TestCase {
         assertEquals(gmt6Hour, ctMidnight);
     }
 
+    @Test
     public void testStringFormat() {
         TimePoint point = TimePoint.at(2004, 3, 12, 5, 3, 14, 0, pt);
         // Try stupid date/time format, so that it couldn't work by accident.
@@ -81,11 +88,13 @@ public class TimePointTest extends TestCase {
         return calendar.getTime();
     }
 
+    @Test
     public void testAsJavaUtilDate() {
         TimePoint dec20_2003 = TimePoint.atMidnightGMT(2003, 12, 20);
         assertEquals(javaUtilDateDec20_2003(), dec20_2003.asJavaUtilDate());
     }
 
+    @Test
     public void testBackToMidnight() {
         TimePoint threeOClock = TimePoint.atGMT(2004, 11, 22, 3, 0);
         assertEquals(TimePoint.atMidnightGMT(2004, 11, 22), threeOClock
@@ -95,6 +104,7 @@ public class TimePointTest extends TestCase {
                 .backToMidnight(gmt));
     }
 
+    @Test
     public void testFromString() {
         TimePoint expected = TimePoint.atGMT(2004, 3, 29, 22, 44, 58, 0);
         String source = "2004-Mar-29 10:44:58 PM";
@@ -102,6 +112,7 @@ public class TimePointTest extends TestCase {
         assertEquals(expected, TimePoint.parseGMTFrom(source, pattern));
     }
 
+    @Test
     public void testEquals() {
         TimePoint createdFromJavaDate = TimePoint
                 .from(javaUtilDateDec20_2003());
@@ -112,6 +123,7 @@ public class TimePointTest extends TestCase {
         assertFalse(createdFromJavaDate.equals(dec5_2003));
     }
 
+    @Test
     public void testEqualsOverYearMonthDay() {
         TimePoint thePoint = TimePoint.atGMT(2000, 1, 1, 8, 0);
         TimeZone gmt = TimeZone.getTimeZone("Universal");
@@ -139,6 +151,7 @@ public class TimePointTest extends TestCase {
                 thePoint, gmt));
     }
 
+    @Test
     public void testBeforeAfter() {
         TimePoint dec5_2003 = TimePoint.atMidnightGMT(2003, 12, 5);
         TimePoint dec20_2003 = TimePoint.atMidnightGMT(2003, 12, 20);
@@ -154,11 +167,13 @@ public class TimePointTest extends TestCase {
         assertFalse(dec20_2003.isAfter(oneSecondLater));
     }
 
+    @Test
     public void testIncrementDuration() {
         Duration twoDays = Duration.days(2);
         assertEquals(dec22_2003, dec20_2003.plus(twoDays));
     }
 
+    @Test
     public void testDecrementDuration() {
         Duration twoDays = Duration.days(2);
         assertEquals(dec19_2003, dec21_2003.minus(twoDays));
@@ -166,6 +181,7 @@ public class TimePointTest extends TestCase {
 
     // This is only an integration test. The primary responsibility is in
     // TimePeriod
+    @Test
     public void testBeforeAfterPeriod() {
         TimeInterval period = TimeInterval.closed(dec20_2003, dec22_2003);
         assertTrue(dec19_2003.isBefore(period));
@@ -176,10 +192,12 @@ public class TimePointTest extends TestCase {
         assertFalse(dec21_2003.isAfter(period));
     }
 
+    @Test
     public void testNextDay() {
         assertEquals(dec20_2003, dec19_2003.nextDay());
     }
 
+    @Test
     public void testCompare() {
         assertTrue(dec19_2003.compareTo(dec20_2003) < 0);
         assertTrue(dec20_2003.compareTo(dec19_2003) > 0);
@@ -190,6 +208,7 @@ public class TimePointTest extends TestCase {
     // The problem is Duration.days(25) overflowed and became negative
     // on a conversion from a long to int in the bowels of the model.
     // We made the conversion unnecessary
+    @Test
     public void testPotentialProblemDueToOldUsageOf_Duration_toBaseUnitsUsage() {
         TimePoint start = TimePoint.atGMT(2005, 10, 1, 0, 0);
         TimePoint end1 = start.plus(Duration.days(24));
@@ -199,6 +218,7 @@ public class TimePointTest extends TestCase {
     }
 
     // TimePoint.at() ignores the minute parameter.
+    @Test
     public void testNotIgnoringMinuteParameter() {
         TimePoint point = TimePoint.at(2006, 03, 22, 13, 45, 59, 499, gmt);
         assertEquals("2006-03-22 13:45:59:499", point.toString(
@@ -208,6 +228,7 @@ public class TimePointTest extends TestCase {
                 "yyyy-MM-dd HH:mm:ss:SSS", gmt));
     }
 
+    @Test
     public void testAtWithTimeZone() {
         TimePoint someTime = TimePoint.at(2006, 6, 8, 16, 45, 33, TimeZone
                 .getDefault());

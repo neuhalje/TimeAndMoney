@@ -5,13 +5,17 @@
  */
 package com.domainlanguage.time;
 
-import java.util.TimeZone;
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class NominalTimeTest extends TestCase {
+import java.util.TimeZone;
+
+import static org.junit.Assert.assertEquals;
+
+public class NominalTimeTest {
 
     private static final TimeZone HONOLULU_TIME = TimeZone.getTimeZone("Pacific/Honolulu");
 
+    @Test
     public void testCombineNominalTimes() {
 
         TimeOfDay fiveFifteenPM = TimeOfDay.hourAndMinute(17, 15);
@@ -22,6 +26,7 @@ public class NominalTimeTest extends TestCase {
         assertEquals(expectedCombination, april19_2006.at(fiveFifteenPM));
     }
 
+    @Test
     public void testConvertNominalTimeToTimePoint() {
         CalendarMinute calendarMinute = CalendarMinute.dateHourAndMinute(2006,
                 4, 19, 17, 15);

@@ -6,12 +6,13 @@
 
 package com.domainlanguage.util;
 
-import java.util.*;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Iterator;
 
-public class ImmutableIteratorTest extends TestCase {
+public class ImmutableIteratorTest {
 
+    @Test(expected = UnsupportedOperationException.class)
     public void testRemove() {
         Iterator iterator = new ImmutableIterator() {
             public boolean hasNext() {
@@ -22,11 +23,8 @@ public class ImmutableIteratorTest extends TestCase {
                 return null;
             }
         };
-        try {
-            iterator.remove();
-            fail("remove is unsupported");
-        } catch (UnsupportedOperationException expected) {
-        }
+
+        iterator.remove();
     }
 
 }

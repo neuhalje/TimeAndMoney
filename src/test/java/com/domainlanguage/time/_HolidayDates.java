@@ -1,6 +1,7 @@
 package com.domainlanguage.time;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * dates are taken from: http://www.opm.gov/fedhol/index.htm note: when a
@@ -11,7 +12,7 @@ import java.util.*;
  */
 class _HolidayDates {
 
-    static String[] COMMON_US_HOLIDAYS = new String[] {
+    static String[] COMMON_US_HOLIDAYS = new String[]{
 
             // 2004
             "2004/01/01", /* New Year's Day */

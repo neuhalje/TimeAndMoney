@@ -6,10 +6,14 @@
 
 package com.domainlanguage.intervals;
 
-import junit.framework.*;
+import org.junit.Test;
 
-public class IntervalMapTest extends TestCase {
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.*;
 
+public class IntervalMapTest {
+
+    @Test
     public void testLookup() {
         IntervalMap map = new LinearIntervalMap();
         map.put(Interval.closed(new Integer(1), new Integer(3)), "one-three");
@@ -42,6 +46,7 @@ public class IntervalMapTest extends TestCase {
         assertNull(map.get(null));
     }
 
+    @Test
     public void testRemove() {
         IntervalMap map = new LinearIntervalMap();
         map.put(Interval.closed(new Integer(1), new Integer(10)), "one-ten");
@@ -53,6 +58,7 @@ public class IntervalMapTest extends TestCase {
         assertEquals("one-ten", map.get(new Integer(6)));
     }
 
+    @Test
     public void testConstructionOverwriteOverlap() {
         IntervalMap map = new LinearIntervalMap();
         map.put(Interval.closed(new Integer(1), new Integer(3)), "one-three");
@@ -70,6 +76,7 @@ public class IntervalMapTest extends TestCase {
         assertEquals("eleven-thirteen", map.get(new Integer(12)));
     }
 
+    @Test
     public void testConstructionOverwriteMiddle() {
         IntervalMap map = new LinearIntervalMap();
         map.put(Interval.closed(new Integer(1), new Integer(3)), "one-three");
@@ -89,6 +96,7 @@ public class IntervalMapTest extends TestCase {
         assertEquals("five-nine", map.get(new Integer(9)));
     }
 
+    @Test
     public void testConstructionOverwriteMultiple() {
         IntervalMap map = new LinearIntervalMap();
         map.put(Interval.closed(new Integer(1), new Integer(2)), "one-two");

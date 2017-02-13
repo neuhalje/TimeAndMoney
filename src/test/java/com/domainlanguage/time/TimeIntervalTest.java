@@ -6,24 +6,27 @@
 
 package com.domainlanguage.time;
 
-import java.util.*;
+import com.domainlanguage.tests.SerializationTester;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Iterator;
 
-import com.domainlanguage.tests.*;
+import static org.junit.Assert.*;
 
-public class TimeIntervalTest extends TestCase {
+public class TimeIntervalTest {
     private TimePoint dec19_2003 = TimePoint.atMidnightGMT(2003, 12, 19);
     private TimePoint dec20_2003 = TimePoint.atMidnightGMT(2003, 12, 20);
     private TimePoint dec21_2003 = TimePoint.atMidnightGMT(2003, 12, 21);
     private TimePoint dec22_2003 = TimePoint.atMidnightGMT(2003, 12, 22);
     private TimePoint dec23_2003 = TimePoint.atMidnightGMT(2003, 12, 23);
 
+    @Test
     public void testSerialization() {
         TimeInterval interval = TimeInterval.closed(dec20_2003, dec22_2003);
         SerializationTester.assertCanBeSerialized(interval);
     }
 
+    @Test
     public void testBeforeClosed() {
         TimeInterval interval = TimeInterval.closed(dec20_2003, dec22_2003);
         // Only the upper end should matter for this test.
@@ -32,6 +35,7 @@ public class TimeIntervalTest extends TestCase {
         assertTrue(interval.isBefore(dec23_2003));
     }
 
+    @Test
     public void testAfterClosed() {
         TimeInterval interval = TimeInterval.closed(dec20_2003, dec22_2003);
         // Only the lower end should matter for this test.
@@ -40,6 +44,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.isAfter(dec21_2003));
     }
 
+    @Test
     public void testIncludesClosed() {
         TimeInterval interval = TimeInterval.closed(dec20_2003, dec22_2003);
         assertFalse(interval.includes(dec19_2003));
@@ -49,6 +54,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.includes(dec23_2003));
     }
 
+    @Test
     public void testBeforeOpen() {
         TimeInterval interval = TimeInterval.open(dec20_2003, dec22_2003);
         // Only the upper end should matter for this test.
@@ -57,6 +63,7 @@ public class TimeIntervalTest extends TestCase {
         assertTrue(interval.isBefore(dec23_2003));
     }
 
+    @Test
     public void testAfterOpen() {
         TimeInterval interval = TimeInterval.open(dec20_2003, dec22_2003);
         // Only the lower end should matter for this test.
@@ -65,6 +72,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.isAfter(dec21_2003));
     }
 
+    @Test
     public void testIncludesOpen() {
         TimeInterval interval = TimeInterval.open(dec20_2003, dec22_2003);
         assertFalse(interval.includes(dec19_2003));
@@ -74,6 +82,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.includes(dec23_2003));
     }
 
+    @Test
     public void testIncludesHalfOpen() {
         TimeInterval interval = TimeInterval.over(dec20_2003, true, dec22_2003, false);
         assertFalse(interval.includes(dec19_2003));
@@ -83,6 +92,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.includes(dec23_2003));
     }
 
+    @Test
     public void testCreateWithDurationFrom() {
         Duration twoDays = Duration.days(2);
         TimeInterval following = TimeInterval.startingFrom(dec20_2003, true, twoDays, true);
@@ -91,6 +101,7 @@ public class TimeIntervalTest extends TestCase {
 
     }
 
+    @Test
     public void testCreateWithDurationUntil() {
         Duration twoDays = Duration.days(2);
         TimeInterval preceding = TimeInterval.preceding(dec21_2003, true, twoDays, true);
@@ -98,6 +109,7 @@ public class TimeIntervalTest extends TestCase {
         assertEquals("dec21 )", dec21_2003, preceding.end());
     }
 
+    @Test
     public void testDefaultFromPoints() {
 /*       Default is closed start, open end [start, end)
          which is the most common convention. For example,
@@ -112,6 +124,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.includes(dec23_2003));
     }
 
+    @Test
     public void testDefaultFromDuration() {
 /*       Default is closed start, open end [start, end)
          which is the most common convention. For example,
@@ -126,6 +139,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(interval.includes(dec23_2003));
     }
 
+    @Test
     public void testEverFrom() {
         TimeInterval afterDec20 = TimeInterval.everFrom(dec20_2003);
         assertTrue(afterDec20.includes(TimePoint.atMidnightGMT(2062, 3, 5)));
@@ -133,6 +147,7 @@ public class TimeIntervalTest extends TestCase {
         assertTrue(afterDec20.includes(dec20_2003));
     }
 
+    @Test
     public void testEverUntil() {
         TimeInterval afterDec20 = TimeInterval.everPreceding(dec20_2003);
         assertFalse(afterDec20.includes(TimePoint.atMidnightGMT(2062, 3, 5)));
@@ -140,6 +155,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(afterDec20.includes(dec20_2003));
     }
 
+    @Test
     public void testLength() {
         TimeInterval interval = TimeInterval.open(dec20_2003, dec22_2003);
         assertEquals(Duration.days(2), interval.length());
@@ -151,6 +167,7 @@ public class TimeIntervalTest extends TestCase {
         assertEquals(expectedLength, interval.length());
     }
 
+    @Test
     public void testDaysIterator() {
         TimePoint start = TimePoint.atGMT(2004, 2, 5, 10, 0);
         TimePoint end = TimePoint.atGMT(2004, 2, 8, 2, 0);
@@ -165,6 +182,7 @@ public class TimeIntervalTest extends TestCase {
         assertFalse(it.hasNext());
     }
 
+    @Test
     public void testSubintervalIterator() {
         TimePoint d4_h10 = TimePoint.atGMT(2004, 2, 4, 10, 0);
         TimePoint d6_h10 = TimePoint.atGMT(2004, 2, 6, 10, 0);
@@ -203,6 +221,7 @@ public class TimeIntervalTest extends TestCase {
         assertNull(iterator.next());
     }
 
+    @Test
     public void testIntersection() {
         TimeInterval i19_22 = TimeInterval.over(dec19_2003, dec22_2003);
         TimeInterval i20_23 = TimeInterval.over(dec20_2003, dec23_2003);

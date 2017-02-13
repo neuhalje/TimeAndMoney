@@ -5,9 +5,11 @@
  */
 package com.domainlanguage.util;
 
-import java.io.*;
-import java.util.*;
-import java.util.jar.*;
+import java.io.File;
+import java.util.Enumeration;
+import java.util.StringTokenizer;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public abstract class ClassGenerator {
     private static final String TIMEANDMONEY_JAR_NAME = "timeandmoney";
@@ -39,7 +41,7 @@ public abstract class ClassGenerator {
             }
         }
     }
-    
+
     protected abstract void next(Class klass) throws Exception;
 
     private void searchInJar(File jarFile) throws Exception {

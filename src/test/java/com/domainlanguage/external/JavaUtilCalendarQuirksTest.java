@@ -5,18 +5,22 @@
  */
 package com.domainlanguage.external;
 
+import org.junit.Test;
+
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * The purpose of these tests is to verify that java.util.Calendar is working like we
  * expect it to. We ran into a small problem with HOUR and HOUR_OF_DAY in
  * CalendarDateTest.testConversionToJavaUtil(). These tests are mainly for peace of mind.
  */
-public class JavaUtilCalendarQuirksTest extends TestCase {
-    
+public class JavaUtilCalendarQuirksTest {
+
+    @Test
     public void testHour() {
         TimeZone gmt = TimeZone.getTimeZone("Universal");
         Calendar test = Calendar.getInstance(gmt);
@@ -25,7 +29,7 @@ public class JavaUtilCalendarQuirksTest extends TestCase {
         test.set(Calendar.DATE, 20);
         test.set(Calendar.HOUR, 5);
         test.set(Calendar.AM_PM, Calendar.PM);
-        
+
         assertEquals(1969, test.get(Calendar.YEAR));
         assertEquals(Calendar.JULY, test.get(Calendar.MONTH));
         assertEquals(20, test.get(Calendar.DATE));
@@ -33,6 +37,8 @@ public class JavaUtilCalendarQuirksTest extends TestCase {
         assertEquals(Calendar.PM, test.get(Calendar.AM_PM));
         assertEquals(17, test.get(Calendar.HOUR_OF_DAY));
     }
+
+    @Test
     public void testHourOfDay() {
         TimeZone gmt = TimeZone.getTimeZone("Universal");
         Calendar test = Calendar.getInstance(gmt);
@@ -40,7 +46,7 @@ public class JavaUtilCalendarQuirksTest extends TestCase {
         test.set(Calendar.MONTH, Calendar.JULY);
         test.set(Calendar.DATE, 20);
         test.set(Calendar.HOUR_OF_DAY, 3);
-        
+
         assertEquals(1969, test.get(Calendar.YEAR));
         assertEquals(Calendar.JULY, test.get(Calendar.MONTH));
         assertEquals(20, test.get(Calendar.DATE));

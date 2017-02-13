@@ -5,19 +5,24 @@
  */
 package com.domainlanguage.util;
 
-import junit.framework.*;
+import org.junit.Ignore;
+import org.junit.Test;
 
-public class VerifyPersistentMappingTest extends TestCase {
+import static org.junit.Assert.fail;
+
+public class VerifyPersistentMappingTest {
     boolean hasFailures;
-    
+
+    @Test
+    @Ignore("This test was not enabled before and fails miserably")
     public void test() throws Exception {
-        hasFailures=false;
-        ClassGenerator generator=new ClassGenerator(new TimeAndMoneyDomainClassFilter()) {
+        hasFailures = false;
+        ClassGenerator generator = new ClassGenerator(new TimeAndMoneyDomainClassFilter()) {
             protected void next(Class klass) throws Exception {
                 PersistentMappingVerification verification;
                 verification = PersistentMappingVerification.on(klass);
                 if (!verification.isPersistableRequirementsSatisfied()) {
-                    hasFailures=true;
+                    hasFailures = true;
                     System.err.println(formatFailure(verification));
                 }
             }

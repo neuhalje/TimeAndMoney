@@ -5,9 +5,9 @@
  */
 package com.domainlanguage.util;
 
-import java.util.*;
+import junit.framework.TestCase;
 
-import junit.framework.*;
+import java.util.StringTokenizer;
 
 public class TimeAndMoneyDomainClassFilter implements ClassFilter {
 
@@ -23,27 +23,30 @@ public class TimeAndMoneyDomainClassFilter implements ClassFilter {
         }
         return false;
     }
+
     private boolean isInnerClass(Class klass) {
         return klass.getName().indexOf('$') > -1;
     }
+
     private boolean isTimeAndMoney(Class klass) {
         if (klass == null)
             return false;
-        StringTokenizer parts=new StringTokenizer(klass.getName(), ".");
-        boolean result=false;
+        StringTokenizer parts = new StringTokenizer(klass.getName(), ".");
+        boolean result = false;
         while (parts.hasMoreTokens()) {
-            String next=parts.nextToken();
+            String next = parts.nextToken();
             if (next.equals("domainlanguage")) {
-                result=true;
+                result = true;
             }
             if (next.equals("tests") || next.equals("util") || next.equals("adt")) {
-                result=false;
+                result = false;
             }
         }
         return result;
     }
+
     private boolean isTestCase(Class klass) {
-        Class superclass=klass.getSuperclass();
+        Class superclass = klass.getSuperclass();
         if (superclass == null) {
             return false;
         }

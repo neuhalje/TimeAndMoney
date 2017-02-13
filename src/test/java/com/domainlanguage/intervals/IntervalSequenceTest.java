@@ -6,11 +6,14 @@
 
 package com.domainlanguage.intervals;
 
-import java.util.*;
+import org.junit.Test;
 
-import junit.framework.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class IntervalSequenceTest extends TestCase {
+import static org.junit.Assert.*;
+
+public class IntervalSequenceTest {
     private Interval c5_10c = Interval.closed(new Integer(5), new Integer(10));
     private Interval o10_12c = Interval.over(new Integer(10), false, new Integer(12), true);
     private Interval o11_20c = Interval.over(new Integer(11), false, new Integer(20), true);
@@ -19,6 +22,7 @@ public class IntervalSequenceTest extends TestCase {
     private Interval o25_30c = Interval.over(new Integer(25), false, new Integer(30), true);
     private Interval o30_35o = Interval.open(new Integer(30), new Integer(35));
 
+    @org.junit.Test
     public void testIterate() {
         IntervalSequence intervalSequence = new IntervalSequence();
         assertTrue(intervalSequence.isEmpty());
@@ -39,6 +43,7 @@ public class IntervalSequenceTest extends TestCase {
         }
     }
 
+    @Test
     public void testInsertedOutOfOrder() {
         IntervalSequence intervalSequence = new IntervalSequence();
         intervalSequence.add(o10_12c);
@@ -54,6 +59,7 @@ public class IntervalSequenceTest extends TestCase {
 
     }
 
+    @Test
     public void testGaps() {
         IntervalSequence intervalSequence = new IntervalSequence();
         intervalSequence.add(c5_10c);
@@ -70,6 +76,7 @@ public class IntervalSequenceTest extends TestCase {
 
     }
 
+    @Test
     public void testOverlapping() {
         IntervalSequence intervalSequence = new IntervalSequence();
         intervalSequence.add(o10_12c);
@@ -81,7 +88,7 @@ public class IntervalSequenceTest extends TestCase {
         assertEquals(o11_20c, it.next());
         assertFalse(it.hasNext());
     }
-    
+
 //    public void testIntersections() {
 //        
 //        IntervalSequence intervalSequence = new IntervalSequence();
@@ -96,7 +103,8 @@ public class IntervalSequenceTest extends TestCase {
 //        assertEquals(c20_20c, it.next());
 //        assertFalse(it.hasNext());
 //    }
-    
+
+    @Test
     public void testExtent() {
         IntervalSequence intervalSequence = new IntervalSequence();
         intervalSequence.add(c5_10c);
