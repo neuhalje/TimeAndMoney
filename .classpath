@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="examples/src"/>
-	<classpathentry kind="src" path="tests/src"/>
-	<classpathentry exported="true" sourcepath="lib/junit-src.zip" kind="lib" path="lib/junit.jar"/>
-	<classpathentry sourcepath="/JRE_1_4_SRC" kind="var" path="JRE_1_4_LIB"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
