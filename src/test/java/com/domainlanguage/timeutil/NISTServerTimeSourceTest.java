@@ -42,7 +42,9 @@ public class NISTServerTimeSourceTest {
 
     @After
     public void tearDown() throws Exception {
-        standInNISTServer.stop();
+        if (standInNISTServer != null) {
+            standInNISTServer.stop();
+        } ;
     }
 
 }

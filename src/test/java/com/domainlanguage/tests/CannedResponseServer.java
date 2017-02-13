@@ -22,8 +22,9 @@ public class CannedResponseServer {
     public CannedResponseServer(String cannedResponse) throws IOException {
         super();
         socket = new ServerSocket();
-        socket.bind(new InetSocketAddress(InetAddress.getLocalHost()
-                .getHostName(), 0));
+        final InetSocketAddress endpoint = new InetSocketAddress(InetAddress.getLoopbackAddress()
+                .getHostName(), 0);
+        socket.bind(endpoint);
         this.cannedResponse = cannedResponse;
     }
 
