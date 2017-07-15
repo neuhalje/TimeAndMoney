@@ -1,3 +1,5 @@
+_I 'rescued' this from [SourceForge](http://timeandmoney.sourceforge.net/) and removed some of the crust (Junit3, Ant, slight polishing). The [original work](readme/credits.txt) has mostly been done by Eric Evans and Martin Fowler_.
+
 Time and Money Code Library
 ==============================
 
